@@ -1,18 +1,20 @@
-// Esse projeto foi adaptado de TeaPot3D.cpp - Isabel H. Manssour
-// Um programa OpenGL que exemplifica a visualização de objetos 3D.
-
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
 #include <GL/glut.h>
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
+#include "Camera.h"
 
 GLfloat angle, fAspect, rotX, rotY;
 
 typedef float color[3];
+
+Camera camera(vec3(0, 0, 0));
+
+static float lastMousePos = 0.0;
+static bool firstTimeMouse = true;
+
+static GLfloat spin = 0.0;
+static GLfloat spin_speed = 1.0;
+float x_pos = 0;
 
 void DesenhaTerreno()
 {
@@ -98,6 +100,10 @@ void Desenha(void)
 	// Limpa a janela de visualização com a cor de fundo definida previamente
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glLoadIdentity();
+
+	camera.ativar();
+
 	DesenhaTerreno();
 
 	// Remove as faces de dentro da casa
@@ -115,6 +121,7 @@ void Desenha(void)
 	// Execução dos comandos de desenho
 	glutSwapBuffers();
 }
+
 
 // Inicialização
 void Inicializa(void)
@@ -154,6 +161,74 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 	EspecificaParametrosVisualizacao();
 }
 
+void TeclasEspeciais (int tecla, int x, int y)
+{
+	switch (tecla)
+	{
+		case GLUT_KEY_LEFT:	camera.left();
+							break;
+		case GLUT_KEY_RIGHT:camera.right();
+							break;
+		case GLUT_KEY_UP:	camera.forward();
+							break;
+		case GLUT_KEY_DOWN:	camera.back();
+							break;
+	}
+	glutPostRedisplay();
+}
+
+
+void spinDisplay(void)
+{
+	float dx;
+
+	if (firstTimeMouse)
+	{
+		dx = 0;
+		lastMousePos = x_pos;
+		firstTimeMouse = false;
+	}
+	dx = x_pos - lastMousePos;
+	lastMousePos = x_pos;
+	camera.updateYaw(dx);
+	camera.update();
+	glutPostRedisplay();
+}
+void spinDisplayReverse(void)
+{
+	float dx;
+
+	if (firstTimeMouse)
+	{
+		dx = 0;
+		lastMousePos = 10;
+		firstTimeMouse = false;
+	}
+	dx = 10 - lastMousePos;
+	lastMousePos = 10;
+	camera.updateYaw(dx);
+	camera.update();
+	glutPostRedisplay();
+}
+
+void MouseEvento(int button,int state,int x,int y)
+{
+	x_pos = x;
+	switch(button)
+	{
+	case GLUT_LEFT_BUTTON:
+		if(state==GLUT_DOWN)
+			glutIdleFunc(spinDisplay);
+		break;
+	case GLUT_RIGHT_BUTTON:
+		if(state==GLUT_DOWN)
+			glutIdleFunc(spinDisplayReverse);
+		break;
+	default:
+		break;
+	}
+}
+
 // Programa Principal
 int main(int argc, char *argv[])
 {
@@ -173,6 +248,12 @@ int main(int argc, char *argv[])
 
 	// Registra a funcao callback de redesenho da janela de visualizacao
 	glutDisplayFunc(Desenha);
+
+	// Registra a funcao callback para tratamento das teclas especiais
+	glutSpecialFunc(TeclasEspeciais);
+
+	// Registra a função callback para tratamento de eventos do mouse 
+	// glutMouseFunc(MouseEvento);
 
 	// Registra a funcao callback para tratamento do redimensionamento da janela
 	glutReshapeFunc(AlteraTamanhoJanela);
