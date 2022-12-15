@@ -1,4 +1,5 @@
-## Rodando no terminal com gcc
+## Rodando no terminal
 ```
-gcc -Wall  main.cpp Camera.cpp -o main -lglut -lGLU -lGL
+cmake
+make
 ```

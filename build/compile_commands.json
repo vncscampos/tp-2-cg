@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/vncs/Documentos/tp2-cg/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/tp2-cg.dir/main.cpp.o -c /home/vncs/Documentos/tp2-cg/main.cpp",
+  "file": "/home/vncs/Documentos/tp2-cg/main.cpp"
+},
+{
+  "directory": "/home/vncs/Documentos/tp2-cg/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/tp2-cg.dir/Camera.cpp.o -c /home/vncs/Documentos/tp2-cg/Camera.cpp",
+  "file": "/home/vncs/Documentos/tp2-cg/Camera.cpp"
+},
+{
+  "directory": "/home/vncs/Documentos/tp2-cg/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/tp2-cg.dir/stb_image.cpp.o -c /home/vncs/Documentos/tp2-cg/stb_image.cpp",
+  "file": "/home/vncs/Documentos/tp2-cg/stb_image.cpp"
+}
+]

@@ -1,0 +1,1 @@
+/bin/x86_64-linux-gnu-g++-9  -g  -rdynamic CMakeFiles/tp2-cg.dir/main.cpp.o CMakeFiles/tp2-cg.dir/Camera.cpp.o CMakeFiles/tp2-cg.dir/stb_image.cpp.o  -o tp2-cg  -lglut -lGL -lGLU 

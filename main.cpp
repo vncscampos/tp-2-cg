@@ -1,7 +1,9 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include<iostream>
 #include "Camera.h"
+#include "stb_image.h"
 
 GLfloat angle, fAspect, rotX, rotY;
 
@@ -15,12 +17,39 @@ float x_pos = 0;
 
 GLfloat posLuz[4] = {100.0, 50.0, 50.0, 1.0};
 
+GLuint texID;
+
+void CarregaTextura(GLuint tex_id, std::string filePath)
+{
+	unsigned char* imgData;
+	int largura, altura, canais;
+
+	stbi_set_flip_vertically_on_load(true);
+	imgData = stbi_load(filePath.c_str(), &largura, &altura, &canais, 4);
+	if (imgData)
+	{
+		glBindTexture(GL_TEXTURE_2D, tex_id);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, largura, altura, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		
+		stbi_image_free(imgData);
+	}
+	else {
+		std::cout << "ERRO:: Nao foi possivel carregar a textura!" << filePath.c_str() << std::endl;
+	}
+}
+
 void DesenhaTerreno()
 {
 	float L = 500.0;
 	float incr = 1.0;
 	float y = -5;
-	glColor3f(0.14f,0.65f,0.05f);
+	glColor3f(0.14f, 0.65f, 0.05f);
 	glBegin(GL_LINES);
 	for (float i = -L; i <= L; i += incr)
 	{
@@ -40,7 +69,7 @@ void DesenhaCeu()
 	float L = 500.0;
 	float incr = 1.0;
 	float y = 5;
-	glColor3f(0.25,0.69,0.92);
+	glColor3f(0.25, 0.69, 0.92);
 	glBegin(GL_LINES);
 	for (float i = -L; i <= L; i += incr)
 	{
@@ -66,13 +95,19 @@ void DesenhaParede(float p1[3], float p2[3], float p3[3], float p4[3], color cor
 	glEnd();
 }
 
-void DesenhaJanelaFrente(float d, color cor) {
+void DesenhaJanelaFrente(float d, color cor, GLuint texid)
+{
 	glColor3fv(cor);
+	glBindTexture(GL_TEXTURE_2D, texid);
 	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 0.0);
 	glVertex3f(d + 5, 2, d);  // 1
+	glTexCoord2f(1.0, 0.0);
 	glVertex3f(d + 5, -2, d); // 2
-	glVertex3f(d, -2, d);  // 3
-	glVertex3f(d, 2, d);   // 4
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(d, -2, d);	  // 3
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(d, 2, d);	  // 4
 	glEnd();
 }
 
@@ -102,34 +137,34 @@ void DesenhaCasa(void)
 	float v7[3] = {-d, -d, -d};
 	float v8[3] = {-d, d, -d};
 
-	color cinza = {0.67, 0.96, 0.71};
+	color verde = {0.67, 0.96, 0.71};
 	color vermelho = {0.95, 0.51, 0.36};
 	color marrom = {0.26, 0.01, 0.02};
-	color azul = {0.25,0.69,0.92};
+	color azul = {0.25, 0.69, 0.92};
 
 	// Desenha porta
 	glNormal3f(0.f, 0.f, 1.f);
 	DesenhaPorta(d, marrom);
 
-	// Desenha porta
+	// Desenha janela
 	glNormal3f(0.f, 0.f, 1.f);
-	DesenhaJanelaFrente(d, azul);
+	DesenhaJanelaFrente(d, azul, texID);
 
 	// Frente
 	glNormal3f(0.f, 0.f, 1.f);
-	DesenhaParede(v1, v2, v3, v4, cinza);
+	DesenhaParede(v1, v2, v3, v4, verde);
 
 	// Direita
 	glNormal3f(1.f, 0.f, 0.f);
-	DesenhaParede(v4, v3, v6, v5, cinza);
+	DesenhaParede(v4, v3, v6, v5, verde);
 
 	// Back
 	glNormal3f(0.f, 0.f, -1.f);
-	DesenhaParede(v5, v8, v7, v6, cinza);
+	DesenhaParede(v5, v8, v7, v6, verde);
 
 	// Esquerda
 	glNormal3f(-1.f, 0.f, 0.f);
-	DesenhaParede(v1, v8, v7, v2, cinza);
+	DesenhaParede(v1, v8, v7, v2, verde);
 
 	// Topo
 	glNormal3f(0.f, 1.f, 0.f);
@@ -138,7 +173,6 @@ void DesenhaCasa(void)
 	// Bottom
 	glNormal3f(0.f, -1.f, 0.f);
 	DesenhaParede(v2, v7, v6, v3, marrom);
-
 }
 
 // Função responsável pela especificação dos parâmetros de iluminação
@@ -179,8 +213,6 @@ void Desenha(void)
 
 	DesenhaTerreno();
 
-	// DesenhaCeu();
-
 	// Chama a função que especifica os parâmetros de iluminação
 	DefineIluminacao();
 
@@ -207,6 +239,12 @@ void Inicializa(void)
 	glEnable(GL_LIGHT0);
 	// Habilita o depth-buffering
 	glEnable(GL_DEPTH_TEST);
+
+	// Habilita textura
+	glEnable(GL_TEXTURE_2D);
+	// glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+	glGenTextures(1, &texID);
+	CarregaTextura(texID, "images/window.jpg");
 
 	// Habilita o modelo de colorização de Gouraud
 	glShadeModel(GL_SMOOTH);
