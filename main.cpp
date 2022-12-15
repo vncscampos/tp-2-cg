@@ -17,7 +17,8 @@ float x_pos = 0;
 
 GLfloat posLuz[4] = {100.0, 50.0, 50.0, 1.0};
 
-GLuint texID;
+GLuint texID; //janela
+GLuint texID2; //porta
 
 void CarregaTextura(GLuint tex_id, std::string filePath)
 {
@@ -64,26 +65,6 @@ void DesenhaTerreno()
 	glEnd();
 }
 
-void DesenhaCeu()
-{
-	float L = 500.0;
-	float incr = 1.0;
-	float y = 5;
-	glColor3f(0.25, 0.69, 0.92);
-	glBegin(GL_LINES);
-	for (float i = -L; i <= L; i += incr)
-	{
-		// Verticais
-		glVertex3f(i, y, -L);
-		glVertex3f(i, y, L);
-
-		// Horizontais
-		glVertex3f(-L, y, i);
-		glVertex3f(L, y, i);
-	}
-	glEnd();
-}
-
 void DesenhaParede(float p1[3], float p2[3], float p3[3], float p4[3], color cor)
 {
 	glColor3fv(cor);
@@ -97,27 +78,32 @@ void DesenhaParede(float p1[3], float p2[3], float p3[3], float p4[3], color cor
 
 void DesenhaJanelaFrente(float d, color cor, GLuint texid)
 {
-	glColor3fv(cor);
+	glColor3f(1.f, 1.f, 1.f);
 	glBindTexture(GL_TEXTURE_2D, texid);
 	glBegin(GL_QUADS);
-	glTexCoord2f(0.0, 0.0);
-	glVertex3f(d + 5, 2, d);  // 1
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(d + 5, -2, d); // 2
-	glTexCoord2f(1.0, 1.0);
-	glVertex3f(d, -2, d);	  // 3
 	glTexCoord2f(0.0, 1.0);
+	glVertex3f(d + 5, 2, d);  // 1
+	glTexCoord2f(0.0, 0.0);
+	glVertex3f(d + 5, -2, d); // 2
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(d, -2, d);	  // 3
+	glTexCoord2f(1.0, 1.0);
 	glVertex3f(d, 2, d);	  // 4
 	glEnd();
 }
 
-void DesenhaPorta(float d, color cor)
+void DesenhaPorta(float d, color cor, GLuint texid)
 {
-	glColor3fv(cor);
+	glBindTexture(GL_TEXTURE_2D, texid);
+	glColor3f(1.f, 1.f, 1.f);
 	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 1.0);
 	glVertex3f(-3, 0, d);  // 1
+	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-3, -d, d); // 2
+	glTexCoord2f(1.0, 0.0);
 	glVertex3f(0, -d, d);  // 3
+	glTexCoord2f(1.0, 1.0);
 	glVertex3f(0, 0, d);   // 4
 	glEnd();
 }
@@ -137,14 +123,14 @@ void DesenhaCasa(void)
 	float v7[3] = {-d, -d, -d};
 	float v8[3] = {-d, d, -d};
 
-	color verde = {0.67, 0.96, 0.71};
+	color verde = {0.86,1,0.91};
 	color vermelho = {0.95, 0.51, 0.36};
 	color marrom = {0.26, 0.01, 0.02};
 	color azul = {0.25, 0.69, 0.92};
 
 	// Desenha porta
 	glNormal3f(0.f, 0.f, 1.f);
-	DesenhaPorta(d, marrom);
+	DesenhaPorta(d, marrom, texID2);
 
 	// Desenha janela
 	glNormal3f(0.f, 0.f, 1.f);
@@ -242,9 +228,10 @@ void Inicializa(void)
 
 	// Habilita textura
 	glEnable(GL_TEXTURE_2D);
-	// glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glGenTextures(1, &texID);
+	glGenTextures(2, &texID2);
 	CarregaTextura(texID, "images/window.jpg");
+	CarregaTextura(texID2, "images/door.jpg");
 
 	// Habilita o modelo de colorização de Gouraud
 	glShadeModel(GL_SMOOTH);
