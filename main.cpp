@@ -51,10 +51,10 @@ void DesenhaPorta(float d, color cor)
 {
 	glColor3fv(cor);
 	glBegin(GL_QUADS);
-		glVertex3f(-3, 0, d);  //1
-		glVertex3f(-3, -d, d); //2
-		glVertex3f(0, -d, d); //3
-		glVertex3f(0, 0, d); //4
+	glVertex3f(-3, 0, d);  // 1
+	glVertex3f(-3, -d, d); // 2
+	glVertex3f(0, -d, d);  // 3
+	glVertex3f(0, 0, d);   // 4
 	glEnd();
 }
 
@@ -65,11 +65,11 @@ void DesenhaCasa(void)
 	// Define vertices
 	float v1[3] = {-d, d, d};
 	float v2[3] = {-d, -d, d};
-	float v3[3] = {d+15, -d, d};
-	float v4[3] = {d+15, d, d};
+	float v3[3] = {d + 15, -d, d};
+	float v4[3] = {d + 15, d, d};
 
-	float v5[3] = {d+15, d, -d};
-	float v6[3] = {d+15, -d, -d};
+	float v5[3] = {d + 15, d, -d};
+	float v6[3] = {d + 15, -d, -d};
 	float v7[3] = {-d, -d, -d};
 	float v8[3] = {-d, d, -d};
 
@@ -78,20 +78,57 @@ void DesenhaCasa(void)
 	color marrom = {0.26, 0.01, 0.02};
 
 	// Frente
+	glNormal3f(0.f, 0.f, -1.f);
 	DesenhaParede(v1, v2, v3, v4, cinza);
+
 	// Direita
+	glNormal3f(1.f, 0.f, 0.f);
 	DesenhaParede(v4, v3, v6, v5, cinza);
+
 	// Back
+	glNormal3f(0.f, 0.f, 1.f);
 	DesenhaParede(v5, v8, v7, v6, cinza);
+
 	// Esquerda
+	glNormal3f(-1.f, 0.f, 0.f);
 	DesenhaParede(v1, v8, v7, v2, cinza);
+
 	// Topo
+	glNormal3f(0.f, 1.f, 0.f);
 	DesenhaParede(v1, v4, v5, v8, vermelho);
+
 	// Bottom
+	glNormal3f(0.f, -1.f, 0.f);
 	DesenhaParede(v2, v7, v6, v3, marrom);
 
 	// Desenha porta
 	DesenhaPorta(d, marrom);
+}
+
+void DefineIluminacao(void)
+{
+	// Modifica intensidade da luz ambiente
+	float globalAmb[] = {0.5f, 0.5f, 0.5f, 1.f};
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globalAmb);
+
+	float light0[4][4] = {
+		{0.2f, 0.2f, 0.2f, 1.0f}, // ambient
+		{0.8f, 0.8f, 0.8f, 1.f},  // diffuse
+		{1.f, 1.f, 1.f, 1.f},	  // specular
+		{0.f, 45.f, 45.f, 1.f},	  // position
+	};
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &light0[0][0]);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &light0[1][0]);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &light0[2][0]);
+	glLightfv(GL_LIGHT0, GL_POSITION, &light0[3][0]);
+
+	// Brilho da parte especular a luz
+	float matSpecular[] = {1.f, 1.f, 1.f, 1.f};
+	// Define a refletância do material
+	glMaterialfv(GL_FRONT, GL_SPECULAR, matSpecular);
+	// Define a concentração do brilho
+	glMaterialf(GL_FRONT, GL_SHININESS, 60);
 }
 
 // Função callback chamada para fazer o desenho
@@ -102,6 +139,7 @@ void Desenha(void)
 
 	glLoadIdentity();
 
+	DefineIluminacao();
 	camera.ativar();
 
 	DesenhaTerreno();
@@ -122,12 +160,20 @@ void Desenha(void)
 	glutSwapBuffers();
 }
 
-
 // Inicialização
 void Inicializa(void)
 {
 	// Fundo preto
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+
+	// Habilita luz
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glEnable(GL_DEPTH_TEST);
+
+	glShadeModel(GL_SMOOTH);
 }
 
 // Função usada para especificar o volume de visualização
@@ -161,22 +207,25 @@ void AlteraTamanhoJanela(GLsizei w, GLsizei h)
 	EspecificaParametrosVisualizacao();
 }
 
-void TeclasEspeciais (int tecla, int x, int y)
+void TeclasEspeciais(int tecla, int x, int y)
 {
 	switch (tecla)
 	{
-		case GLUT_KEY_LEFT:	camera.left();
-							break;
-		case GLUT_KEY_RIGHT:camera.right();
-							break;
-		case GLUT_KEY_UP:	camera.forward();
-							break;
-		case GLUT_KEY_DOWN:	camera.back();
-							break;
+	case GLUT_KEY_LEFT:
+		camera.left();
+		break;
+	case GLUT_KEY_RIGHT:
+		camera.right();
+		break;
+	case GLUT_KEY_UP:
+		camera.forward();
+		break;
+	case GLUT_KEY_DOWN:
+		camera.back();
+		break;
 	}
 	glutPostRedisplay();
 }
-
 
 void spinDisplay(void)
 {
@@ -211,17 +260,17 @@ void spinDisplayReverse(void)
 	glutPostRedisplay();
 }
 
-void MouseEvento(int button,int state,int x,int y)
+void MouseEvento(int button, int state, int x, int y)
 {
 	x_pos = x;
-	switch(button)
+	switch (button)
 	{
 	case GLUT_LEFT_BUTTON:
-		if(state==GLUT_DOWN)
+		if (state == GLUT_DOWN)
 			glutIdleFunc(spinDisplay);
 		break;
 	case GLUT_RIGHT_BUTTON:
-		if(state==GLUT_DOWN)
+		if (state == GLUT_DOWN)
 			glutIdleFunc(spinDisplayReverse);
 		break;
 	default:
@@ -252,7 +301,7 @@ int main(int argc, char *argv[])
 	// Registra a funcao callback para tratamento das teclas especiais
 	glutSpecialFunc(TeclasEspeciais);
 
-	// Registra a função callback para tratamento de eventos do mouse 
+	// Registra a função callback para tratamento de eventos do mouse
 	// glutMouseFunc(MouseEvento);
 
 	// Registra a funcao callback para tratamento do redimensionamento da janela
