@@ -1,4 +1,4 @@
-# Install script for directory: /home/vncs/Documentos/tp2-cg
+# Install script for directory: /home/arthur/Documents/Faculdade/CG/tp2-cg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/vncs/Documentos/tp2-cg/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/arthur/Documents/Faculdade/CG/tp2-cg/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

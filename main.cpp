@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include<iostream>
+#include <iostream>
 #include "Camera.h"
 #include "stb_image.h"
 
@@ -17,12 +17,13 @@ float x_pos = 0;
 
 GLfloat posLuz[4] = {100.0, 50.0, 50.0, 1.0};
 
-GLuint texID; //janela
-GLuint texID2; //porta
+GLuint texID;		// janela
+GLuint texID2;	// porta
+GLuint floorID; // chão
 
 void CarregaTextura(GLuint tex_id, std::string filePath)
 {
-	unsigned char* imgData;
+	unsigned char *imgData;
 	int largura, altura, canais;
 
 	stbi_set_flip_vertically_on_load(true);
@@ -37,10 +38,11 @@ void CarregaTextura(GLuint tex_id, std::string filePath)
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		
+
 		stbi_image_free(imgData);
 	}
-	else {
+	else
+	{
 		std::cout << "ERRO:: Nao foi possivel carregar a textura!" << filePath.c_str() << std::endl;
 	}
 }
@@ -82,13 +84,13 @@ void DesenhaJanelaFrente(float d, color cor, GLuint texid)
 	glBindTexture(GL_TEXTURE_2D, texid);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 1.0);
-	glVertex3f(d + 5, 2, d);  // 1
+	glVertex3f(d + 5, 2, d); // 1
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(d + 5, -2, d); // 2
 	glTexCoord2f(1.0, 0.0);
-	glVertex3f(d, -2, d);	  // 3
+	glVertex3f(d, -2, d); // 3
 	glTexCoord2f(1.0, 1.0);
-	glVertex3f(d, 2, d);	  // 4
+	glVertex3f(d, 2, d); // 4
 	glEnd();
 }
 
@@ -98,13 +100,29 @@ void DesenhaPorta(float d, color cor, GLuint texid)
 	glColor3f(1.f, 1.f, 1.f);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.0, 1.0);
-	glVertex3f(-3, 0, d);  // 1
+	glVertex3f(-3, 0, d); // 1
 	glTexCoord2f(0.0, 0.0);
 	glVertex3f(-3, -d, d); // 2
 	glTexCoord2f(1.0, 0.0);
-	glVertex3f(0, -d, d);  // 3
+	glVertex3f(0, -d, d); // 3
 	glTexCoord2f(1.0, 1.0);
-	glVertex3f(0, 0, d);   // 4
+	glVertex3f(0, 0, d); // 4
+	glEnd();
+}
+
+void DesenhaChao(float p1[3], float p2[3], float p3[3], float p4[3], color cor)
+{
+	glBindTexture(GL_TEXTURE_2D, floorID);
+	// glColor3fv(cor);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.0, 1.0);
+	glVertex3fv(p1);
+	glTexCoord2f(0.0, 0.0);
+	glVertex3fv(p2);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3fv(p3);
+	glTexCoord2f(1.0, 1.0);
+	glVertex3fv(p4);
 	glEnd();
 }
 
@@ -123,7 +141,7 @@ void DesenhaCasa(void)
 	float v7[3] = {-d, -d, -d};
 	float v8[3] = {-d, d, -d};
 
-	color verde = {0.86,1,0.91};
+	color verde = {0.86, 1, 0.91};
 	color vermelho = {0.95, 0.51, 0.36};
 	color marrom = {0.26, 0.01, 0.02};
 	color azul = {0.25, 0.69, 0.92};
@@ -158,14 +176,14 @@ void DesenhaCasa(void)
 
 	// Bottom
 	glNormal3f(0.f, -1.f, 0.f);
-	DesenhaParede(v2, v7, v6, v3, marrom);
+	DesenhaChao(v2, v7, v6, v3, marrom);
 }
 
 // Função responsável pela especificação dos parâmetros de iluminação
 void DefineIluminacao(void)
 {
 	GLfloat luzAmbiente[4] = {0.2, 0.2, 0.2, 1.0};
-	GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0};	// "cor"
+	GLfloat luzDifusa[4] = {0.7, 0.7, 0.7, 1.0};		// "cor"
 	GLfloat luzEspecular[4] = {1.0, 1.0, 1.0, 1.0}; // "brilho"
 
 	// Capacidade de brilho do material
@@ -232,6 +250,7 @@ void Inicializa(void)
 	glGenTextures(2, &texID2);
 	CarregaTextura(texID, "images/window.jpg");
 	CarregaTextura(texID2, "images/door.jpg");
+	CarregaTextura(floorID, "images/wood.jpg");
 
 	// Habilita o modelo de colorização de Gouraud
 	glShadeModel(GL_SMOOTH);

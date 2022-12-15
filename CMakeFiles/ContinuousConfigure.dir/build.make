@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vncs/Documentos/tp2-cg
+CMAKE_SOURCE_DIR = /home/arthur/Documents/Faculdade/CG/tp2-cg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vncs/Documentos/tp2-cg
+CMAKE_BINARY_DIR = /home/arthur/Documents/Faculdade/CG/tp2-cg
 
 # Utility rule file for ContinuousConfigure.
 
@@ -71,6 +71,6 @@ CMakeFiles/ContinuousConfigure.dir/clean:
 .PHONY : CMakeFiles/ContinuousConfigure.dir/clean
 
 CMakeFiles/ContinuousConfigure.dir/depend:
-	cd /home/vncs/Documentos/tp2-cg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg/CMakeFiles/ContinuousConfigure.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/arthur/Documents/Faculdade/CG/tp2-cg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles/ContinuousConfigure.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ContinuousConfigure.dir/depend
 

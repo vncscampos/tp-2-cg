@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/vncs/Documentos/tp2-cg
+CMAKE_SOURCE_DIR = /home/arthur/Documents/Faculdade/CG/tp2-cg
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/vncs/Documentos/tp2-cg
+CMAKE_BINARY_DIR = /home/arthur/Documents/Faculdade/CG/tp2-cg
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tp2-cg.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/tp2-cg.dir/flags.make
 
 CMakeFiles/tp2-cg.dir/main.cpp.o: CMakeFiles/tp2-cg.dir/flags.make
 CMakeFiles/tp2-cg.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vncs/Documentos/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tp2-cg.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/main.cpp.o -c /home/vncs/Documentos/tp2-cg/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tp2-cg.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/main.cpp.o -c /home/arthur/Documents/Faculdade/CG/tp2-cg/main.cpp
 
 CMakeFiles/tp2-cg.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp2-cg.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vncs/Documentos/tp2-cg/main.cpp > CMakeFiles/tp2-cg.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arthur/Documents/Faculdade/CG/tp2-cg/main.cpp > CMakeFiles/tp2-cg.dir/main.cpp.i
 
 CMakeFiles/tp2-cg.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp2-cg.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vncs/Documentos/tp2-cg/main.cpp -o CMakeFiles/tp2-cg.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arthur/Documents/Faculdade/CG/tp2-cg/main.cpp -o CMakeFiles/tp2-cg.dir/main.cpp.s
 
 CMakeFiles/tp2-cg.dir/Camera.cpp.o: CMakeFiles/tp2-cg.dir/flags.make
 CMakeFiles/tp2-cg.dir/Camera.cpp.o: Camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vncs/Documentos/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tp2-cg.dir/Camera.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/Camera.cpp.o -c /home/vncs/Documentos/tp2-cg/Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tp2-cg.dir/Camera.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/Camera.cpp.o -c /home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.cpp
 
 CMakeFiles/tp2-cg.dir/Camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp2-cg.dir/Camera.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vncs/Documentos/tp2-cg/Camera.cpp > CMakeFiles/tp2-cg.dir/Camera.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.cpp > CMakeFiles/tp2-cg.dir/Camera.cpp.i
 
 CMakeFiles/tp2-cg.dir/Camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp2-cg.dir/Camera.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vncs/Documentos/tp2-cg/Camera.cpp -o CMakeFiles/tp2-cg.dir/Camera.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.cpp -o CMakeFiles/tp2-cg.dir/Camera.cpp.s
 
 CMakeFiles/tp2-cg.dir/stb_image.cpp.o: CMakeFiles/tp2-cg.dir/flags.make
 CMakeFiles/tp2-cg.dir/stb_image.cpp.o: stb_image.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/vncs/Documentos/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp2-cg.dir/stb_image.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/stb_image.cpp.o -c /home/vncs/Documentos/tp2-cg/stb_image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tp2-cg.dir/stb_image.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tp2-cg.dir/stb_image.cpp.o -c /home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.cpp
 
 CMakeFiles/tp2-cg.dir/stb_image.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tp2-cg.dir/stb_image.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vncs/Documentos/tp2-cg/stb_image.cpp > CMakeFiles/tp2-cg.dir/stb_image.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.cpp > CMakeFiles/tp2-cg.dir/stb_image.cpp.i
 
 CMakeFiles/tp2-cg.dir/stb_image.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tp2-cg.dir/stb_image.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vncs/Documentos/tp2-cg/stb_image.cpp -o CMakeFiles/tp2-cg.dir/stb_image.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.cpp -o CMakeFiles/tp2-cg.dir/stb_image.cpp.s
 
 # Object files for target tp2-cg
 tp2__cg_OBJECTS = \
@@ -110,7 +110,7 @@ tp2-cg: CMakeFiles/tp2-cg.dir/Camera.cpp.o
 tp2-cg: CMakeFiles/tp2-cg.dir/stb_image.cpp.o
 tp2-cg: CMakeFiles/tp2-cg.dir/build.make
 tp2-cg: CMakeFiles/tp2-cg.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/vncs/Documentos/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable tp2-cg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable tp2-cg"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tp2-cg.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/tp2-cg.dir/clean:
 .PHONY : CMakeFiles/tp2-cg.dir/clean
 
 CMakeFiles/tp2-cg.dir/depend:
-	cd /home/vncs/Documentos/tp2-cg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg /home/vncs/Documentos/tp2-cg/CMakeFiles/tp2-cg.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/arthur/Documents/Faculdade/CG/tp2-cg && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg /home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles/tp2-cg.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tp2-cg.dir/depend
 

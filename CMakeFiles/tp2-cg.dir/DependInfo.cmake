@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/vncs/Documentos/tp2-cg/Camera.cpp" "/home/vncs/Documentos/tp2-cg/CMakeFiles/tp2-cg.dir/Camera.cpp.o"
-  "/home/vncs/Documentos/tp2-cg/main.cpp" "/home/vncs/Documentos/tp2-cg/CMakeFiles/tp2-cg.dir/main.cpp.o"
-  "/home/vncs/Documentos/tp2-cg/stb_image.cpp" "/home/vncs/Documentos/tp2-cg/CMakeFiles/tp2-cg.dir/stb_image.cpp.o"
+  "/home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.cpp" "/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles/tp2-cg.dir/Camera.cpp.o"
+  "/home/arthur/Documents/Faculdade/CG/tp2-cg/main.cpp" "/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles/tp2-cg.dir/main.cpp.o"
+  "/home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.cpp" "/home/arthur/Documents/Faculdade/CG/tp2-cg/CMakeFiles/tp2-cg.dir/stb_image.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/vncs/Documentos/tp2-cg/Camera.h
+/home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.h
 cmath
 -
 
-/home/vncs/Documentos/tp2-cg/main.cpp
+/home/arthur/Documents/Faculdade/CG/tp2-cg/main.cpp
 GL/glut.h
 -
 stdio.h
@@ -20,13 +20,13 @@ stdlib.h
 iostream
 -
 Camera.h
-/home/vncs/Documentos/tp2-cg/Camera.h
+/home/arthur/Documents/Faculdade/CG/tp2-cg/Camera.h
 stb_image.h
-/home/vncs/Documentos/tp2-cg/stb_image.h
+/home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.h
 
-/home/vncs/Documentos/tp2-cg/stb_image.h
+/home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.h
 stb_image.h
-/home/vncs/Documentos/tp2-cg/stb_image.h
+/home/arthur/Documents/Faculdade/CG/tp2-cg/stb_image.h
 stdio.h
 -
 stdlib.h
